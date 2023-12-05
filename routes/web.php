@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AulaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,8 +24,30 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ResetPassword;
-use App\Http\Controllers\ChangePassword;            
-            
+use App\Http\Controllers\ChangePassword;
+use App\Http\Controllers\ColegioController;
+
+   
+
+
+//	COLEGIO										
+Route::get('/colegios',[ColegioController::class, 'index'])->name('colegios.index');
+Route::get('/colegios/create', [ColegioController::class, 'create'])->name('colegios.create');
+Route::post('/colegios', [ColegioController::class, 'store'])->name('colegios.store');
+Route::get('/colegios/{id}/edit', [ColegioController::class, 'edit'])->name('colegios.edit');
+Route::put('/colegios/{id}', [ColegioController::class, 'update'])->name('colegios.update');
+Route::delete('/colegios/{id}', [ColegioController::class, 'destroy'])->name('colegios.destroy');
+// 	AULA			
+Route::get('/aulas',[AulaController::class, 'index'])->name('aulas.index');
+Route::get('/aulas/create', [AulaController::class, 'create'])->name('aulas.create');
+Route::post('/aulas', [AulaController::class, 'store'])->name('aulas.store');
+Route::get('/aulas/{id}', [AulaController::class, 'show'])->name('aulas.show');
+Route::get('/aulas/{id}/edit', [AulaController::class, 'edit'])->name('aulas.edit');
+Route::put('/aulas/{id}', [AulaController::class, 'update'])->name('aulas.update');
+
+Route::delete('/aulas/{id}', [AulaController::class, 'destroy'])->name('aulas.destroy');
+
+
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
 	Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
